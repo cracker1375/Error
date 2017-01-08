@@ -23,9 +23,7 @@ local function check_member_autorealm(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_english = 'no',
-		  lock_arabic = 'no',
-		  welcome = 'group'
+		  welcome = 'group',
         }
       }
       save_data(_config.moderation.data, data)
@@ -62,9 +60,7 @@ local function check_member_realm_add(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_english = 'no',
-		  lock_arabic = 'no',
-		  welcome = 'group'
+		  welcome = 'group',
         }
       }
       save_data(_config.moderation.data, data)
@@ -103,9 +99,7 @@ function check_member_group(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_english = 'no',
-		  lock_arabic = 'no',
-		  welcome = 'group'
+		  welcome = 'group',
         }
       }
       save_data(_config.moderation.data, data)
@@ -144,9 +138,7 @@ local function check_member_modadd(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_english = 'no',
-		  lock_arabic = 'no',
-		  welcome = 'group'
+		  welcome = 'group',
         }
       }
       save_data(_config.moderation.data, data)
@@ -255,14 +247,6 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['lock_badw'] then
     	lock_badw = data[tostring(msg.to.id)]['settings']['lock_badw']
    	end
-    local lock_english = "no"
-    if data[tostring(msg.to.id)]['settings']['lock_english'] then
-    	lock_username = data[tostring(msg.to.id)]['settings']['lock_english']
-   	end
-    local lock_arabic = "no"
-    if data[tostring(msg.to.id)]['settings']['lock_arabic'] then
-    	lock_arabic = data[tostring(msg.to.id)]['settings']['lock_arabic']
-   	end
     local welcome = "group"
     if data[tostring(msg.to.id)]['settings']['welcome'] then
     	welcome = data[tostring(msg.to.id)]['settings']['welcome']
@@ -290,34 +274,6 @@ local function get_description(msg, data)
   local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
   return 'درباره'..about
 end
-local function lock_group_arabic(msg, data, target)
-  if not is_momod(msg) then
-    return "قفط مدیران"
-  end
-  local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
-  if group_arabic_lock == 'yes' then
-    return 'عربی از قبل قفل است'
-  else
-    data[tostring(target)]['settings']['lock_arabic'] = 'yes'
-    save_data(_config.moderation.data, data)
-    return 'عربی قفل شد'
-  end
-end
-
-local function unlock_group_arabic(msg, data, target)
-  if not is_momod(msg) then
-    return "فقط مدیران"
-  end
-  local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
-  if group_arabic_lock == 'no' then
-    return 'عربی از قبل آزاد است'
-  else
-    data[tostring(target)]['settings']['lock_arabic'] = 'no'
-    save_data(_config.moderation.data, data)
-    return 'عربی آزاد شد'
-  end
-end
-
 local function lock_group_tag(msg, data, target)
   if not is_momod(msg) then
     return "فقط مدیران❗️"
@@ -350,30 +306,6 @@ local function lock_group_username(msg, data, target)
   if not is_momod(msg) then
     return "قفط مدیران❗️"
   end
-  local group_english_lock = data[tostring(target)]['settings']['lock_english']
-  if group_english_lock == 'yes' then
-    return 'ایگلیسی از قبل قفل است🔒'
-  else
-    data[tostring(target)]['settings']['lock_english'] = 'yes'
-    save_data(_config.moderation.data, data)
-    return 'اینگلیسی قفل شد✅🔒'
-  end
-end
-
-local function unlock_group_english(msg, data, target)
-  if not is_momod(msg) then
-    return "قفط مدیران❗️"
-  end
-  local group_english_lock = data[tostring(target)]['settings']['lock_english']
-  if group_english_lock == 'no' then
-    return 'اینگلیسی از قبل باز است🔓'
-  else
-    data[tostring(target)]['settings']['lock_english'] = 'no'
-    save_data(_config.moderation.data, data)
-    return 'اینگلیسی ازاد شد✅🔓'
-  end
-end
-
 local function lock_group_badw(msg, data, target)
   if not is_momod(msg) then
     return "فقط مدیران❗️"
