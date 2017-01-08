@@ -1108,10 +1108,6 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked badw🔒 ")
         return lock_group_badw(msg, data, target)
       end
-      if matches[2] == 'اینگلیسی' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked english🔒 ")
-        return lock_group_english(msg, data, target)
-      end
     if matches[2] == 'خروج' then
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked leaving ")
        return lock_group_leave(msg, data, target)
@@ -1150,10 +1146,6 @@ local function run(msg, matches)
       if matches[2] == 'فحش' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked badw🔓 ")
         return unlock_group_badw(msg, data, target)
-      end
-      if matches[2] == 'اینگلیسی' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked english🔓 ")
-        return unlock_group_english(msg, data, target)
       end
     if matches[2] == 'خروج' then
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked leaving ")
